@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('kilometrageProchainEntretien');
             $table->string('description');
             $table->string('piecesChangees');
-
+            $table->timestamps();
         });
     }
 

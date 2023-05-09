@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Entretien;
 
 class EntretienController extends Controller
 {
@@ -11,7 +12,9 @@ class EntretienController extends Controller
      */
     public function index()
     {
-        //
+        error_log("controller");
+        $entretiens=Entretien::all();
+        return response()->json($entretiens);
     }
 
     /**
@@ -27,7 +30,14 @@ class EntretienController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entretiens=new Entretien();
+        $entretiens->dateEntretien=$request->input('dateEntretien');
+        $entretiens->typeEntretien=$request->input('typeEntretien');
+        $entretiens->kilometrageEntretien=$request->input('kilometrageEntretien');
+        $entretiens->kilometrageProchainEntretien=$request->input('kilometrageProchainEntretien');
+        $entretiens->description=$request->input('description');
+        $entretiens->piecesChangees=$request->input('piecesChangees');
+        $entretiens->save();
     }
 
     /**
@@ -35,7 +45,8 @@ class EntretienController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $entretiens=Entretien::find($id);
+        return response()->json($entretiens);
     }
 
     /**
@@ -51,7 +62,14 @@ class EntretienController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $entretiens=Entretien::find($id);
+        $entretiens->dateEntretien=$request->input('dateEntretien');
+        $entretiens->typeEntretien=$request->input('typeEntretien');
+        $entretiens->kilometrageEntretien=$request->input('kilometrageEntretien');
+        $entretiens->kilometrageProchainEntretien=$request->input('kilometrageProchainEntretien');
+        $entretiens->description=$request->input('description');
+        $entretiens->piecesChangees=$request->input('piecesChangees');
+        $entretiens->save();
     }
 
     /**
@@ -59,6 +77,11 @@ class EntretienController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $entretiens=Entretien::find($id);
+        if($entretiens){
+            $entretiens->delete();
+            return response()->json(['message'=>'Entretien supprimé avec succès']);
+        }
+        return response()->json(['message'=>'Impossible de trouver entretien'],404);
     }
 }
