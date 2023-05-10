@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('contrats', function (Blueprint $table) {
-            $table->integer('flotte_id')->unsigned();
-            $table->foreign('flotte_id')->references('id')->on('flottes');
+            $table->integer('incident_id')->unsigned();
+            $table->foreign('incident_id')->references('id')->on('incidents');
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('contrats', function (Blueprint $table) {
-            $table->integer('flotte_id')->unsigned();
-            $table->foreign('flotte_id')->references('id')->on('flottes');
+            $table->integer('incident_id')->unsigned();
+            $table->foreign('incident_id')->references('id')->on('incidents');
         });
     }
 };

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reservation;
 
 class ReservationController extends Controller
 {
@@ -11,7 +12,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        error_log("controller");
+        $reservations=Reservation::all();
+        return response()->json($reservations);
     }
 
     /**
@@ -27,7 +30,11 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reservations=new Reservation();
+        $reservations->dateDebutReservation=$request->input('dateDebutReservation');
+        $reservations->dateFinReservation=$request->input('dateFinReservation');
+        $reservations->nombreJours=$request->input('nombreJours');
+        $reservations->save();
     }
 
     /**
@@ -35,7 +42,8 @@ class ReservationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $reservations=Reservation::find($id);
+        return response()->json($reservations);
     }
 
     /**
@@ -51,7 +59,11 @@ class ReservationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $reservations=Reservation::find($id);
+        $reservations->dateDebutReservation=$request->input('dateDebutReservation');
+        $reservations->dateFinReservation=$request->input('dateFinReservation');
+        $reservations->nombreJours=$request->input('nombreJours');
+        $reservations->save();
     }
 
     /**
@@ -59,6 +71,11 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $reservations=Reservation::find($id);
+        if($reservations){
+            $reservations->delete();
+            return response()->json(['message'=>'Reservation supprimé avec succès']);
+        }
+        return response()->json(['message'=>'Impossible de trouver reservation'],404);
     }
 }

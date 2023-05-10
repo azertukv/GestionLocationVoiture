@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Operation;
 
 class OperationController extends Controller
 {
@@ -11,7 +12,9 @@ class OperationController extends Controller
      */
     public function index()
     {
-        //
+        error_log("controller");
+        $operations=Operation::all();
+        return response()->json($operations);
     }
 
     /**
@@ -27,7 +30,7 @@ class OperationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -35,7 +38,8 @@ class OperationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $operations=Operation::find($id);
+        return response()->json($operations);
     }
 
     /**
@@ -51,7 +55,7 @@ class OperationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**
@@ -59,6 +63,6 @@ class OperationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
     }
 }

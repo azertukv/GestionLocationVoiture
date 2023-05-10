@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Incident;
 
 class IncidentController extends Controller
 {
@@ -11,7 +12,9 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        //
+        error_log("controller");
+        $incidents=Incident::all();
+        return response()->json($incidents);
     }
 
     /**
@@ -27,7 +30,12 @@ class IncidentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $incidents=new Incident();
+        $incidents->dateIncident=$request->input('dateIncident');
+        $incidents->degats=$request->input('degats');
+        $incidents->documents=$request->input('documents');
+        $incidents->detailsIncident=$request->input('detailsIncident');
+        $incidents->save();
     }
 
     /**
@@ -35,7 +43,8 @@ class IncidentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $incidents=Incident::find($id);
+        return response()->json($incidents);
     }
 
     /**
@@ -51,7 +60,12 @@ class IncidentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $incidents=Incident::find($id);
+        $incidents->dateIncident=$request->input('dateIncident');
+        $incidents->degats=$request->input('degats');
+        $incidents->documents=$request->input('documents');
+        $incidents->detailsIncident=$request->input('detailsIncident');
+        $incidents->save();
     }
 
     /**
@@ -59,6 +73,11 @@ class IncidentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $incidents=Incident::find($id);
+        if($incidents){
+            $incidents->delete();
+            return response()->json(['message'=>'Incident supprimé avec succès']);
+        }
+        return response()->json(['message'=>'Impossible de trouver incident'],404);
     }
 }

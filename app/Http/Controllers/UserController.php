@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class UserController extends Controller
 {
     /**
@@ -11,7 +11,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        error_log("controller");
+        $users=User::all();
+        return response()->json($users);
     }
 
     /**
@@ -27,7 +29,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $users=new User();
+        $users->name=$request->input('name');
+        $users->email=$request->input('email');
+        $users->email_verified_at=$request->input('email_verified_at');
+        $users->password=$request->input('password');
+        $users->save();
     }
 
     /**
@@ -35,7 +42,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $users=User::find($id);
+        return response()->json($users);
     }
 
     /**
@@ -51,7 +59,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $users=User::find($id);
+        $users->name=$request->input('name');
+        $users->email=$request->input('email');
+        $users->email_verified_at=$request->input('email_verified_at');
+        $users->password=$request->input('password');
+        $users->save();
     }
 
     /**
@@ -59,6 +72,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $users=User::find($id);
+        if($users){
+            $contrats->delete();
+            return response()->json(['message'=>'User supprimé avec succès']);
+        }
+        return response()->json(['message'=>'Impossible de trouver user'],404);
     }
 }

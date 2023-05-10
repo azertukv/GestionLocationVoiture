@@ -12,8 +12,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        error_log("controller");
-        $clients=Client::all();
+
+        // $clients=Client::all();
+        $clients = Client::with("reservations")->get();
         return response()->json($clients);
     }
 
