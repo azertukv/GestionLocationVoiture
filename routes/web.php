@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContratController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,10 @@ Route::get('/contrat/search/{id}',[ContratController::class, 'show']);
 Route::post('/contrat/add',[ContratController::class, 'store']);
 Route::post('/contrat/update/{id}',[ContratController::class, 'update']);
 Route::delete('/contrat/delete/{id}',[ContratController::class, 'destroy']);
+
+Route::get('/client/all',[ClientController::class, 'index'])->name('all_clients');
+Route::get('/client/search/{id}',[ClientController::class, 'show'])->name('show_client');
+Route::post('/client/add',[ClientController::class, 'store'])->name('add_client');
+Route::post('/client/update/{id}',[ClientController::class, 'update'])->name('update_client');
+Route::delete('/client/delete/{id}',[ClientController::class, 'destroy'])->name('delete_client');
 require __DIR__.'/auth.php';

@@ -13,9 +13,10 @@ class ClientController extends Controller
     public function index()
     {
 
-        // $clients=Client::all();
-        $clients = Client::with("reservations")->get();
-        return response()->json($clients);
+        $clients=Client::all();
+        // $clients = Client::with("reservations")->get();
+        // return response()->json($clients);
+        return view('client.index')->with('clients', $clients);
     }
 
     /**
@@ -40,6 +41,7 @@ class ClientController extends Controller
         $clients->numPermis=$request->input('numPermis');
         $clients->dateEditionPermis=$request->input('dateEditionPermis');
         $clients->save();
+        return redirect()->back()->with('success', 'Data added successfully');
     }
 
     /**
@@ -73,6 +75,7 @@ class ClientController extends Controller
         $clients->numPermis=$request->input('numPermis');
         $clients->dateEditionPermis=$request->input('dateEditionPermis');
         $clients->save();
+        return redirect()->back()->with('success', 'Data updated successfully');
     }
 
     /**
@@ -83,8 +86,8 @@ class ClientController extends Controller
         $clients=Client::find($id);
         if($clients){
             $clients->delete();
-            return response()->json(['message'=>'Client supprimé avec succès']);
+            return redirect()->back()->with('success', 'Data deleted successfully');
         }
-        return response()->json(['message'=>'Impossible de trouver client'],404);
+        return redirect()->back()->with('warning', 'Impossible de trouver le client');
     }
 }
