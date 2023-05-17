@@ -3,7 +3,7 @@
 <html lang="en">
 	<head><base href="">
 		<title>Location voiture</title>
-		<link rel="icon" type="image/png" href="{{asset('images/logo.png')}}" />
+		<link rel="icon" type="image/png" href="{{asset('images/big-logo.png')}}" />
 		<meta charset="utf-8" />
 		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -53,7 +53,7 @@
 							<div class="menu menu-column menu-title-gray-800 menu-state-title-success menu-state-icon-success menu-state-bullet-success menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
 								<div class="menu-item">
 									<div class="menu-content pb-2">
-										<span class="menu-section text-muted text-uppercase bold-500 fs-8 ls-1">Dashboard</span>
+										<span class="menu-section text-muted text-uppercase bold-500 fs-8 ls-1">Location de voiture</span>
 									</div>
 								</div>
 								{{-- <div class="menu-item">
@@ -70,7 +70,7 @@
 								</div> --}}
 
 								<div class="menu-item">
-									<a class="menu-link active" href="">
+									<a class="menu-link active" href="{{ url('/dashboard') }}">
 										<span class="menu-icon">
 											<span class="svg-icon svg-icon-2">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo" viewBox="0 0 16 16">
@@ -78,7 +78,7 @@
 												  </svg>
 											</span>
 										</span>
-										<span class="menu-title">Clients</span>
+										<span class="menu-title">Accueil</span>
 									</a>
 								</div>
 
@@ -94,9 +94,8 @@
 										<span class="menu-title">Clients</span>
 									</a>
 								</div>
-
-								<div class="menu-item">
-									<a class="menu-link active" href="">
+                                <div class="menu-item">
+									<a class="menu-link active" href="{{ route('all_flottes')}}">
 										<span class="menu-icon">
 											<span class="svg-icon svg-icon-2">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo" viewBox="0 0 16 16">
@@ -104,7 +103,20 @@
 												  </svg>
 											</span>
 										</span>
-										<span class="menu-title">Clients</span>
+										<span class="menu-title">Flottes</span>
+									</a>
+								</div>
+
+								<div class="menu-item">
+									<a class="menu-link active" href="{{ route('all_reservations')}}">
+										<span class="menu-icon">
+											<span class="svg-icon svg-icon-2">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo" viewBox="0 0 16 16">
+													<path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
+												  </svg>
+											</span>
+										</span>
+										<span class="menu-title">Reservations</span>
 									</a>
 								</div>
 
@@ -137,7 +149,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
+					{{-- <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
 						<a href="../../demo1/dist/documentation/getting-started.html" class="btn btn-custom btn-success w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
 							<span class="btn-label">Docs &amp; Components</span>
 							<span class="svg-icon btn-icon svg-icon-2">
@@ -147,7 +159,7 @@
 								</svg>
 							</span>
 						</a>
-					</div>
+					</div> --}}
 				</div>
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 					<div id="kt_header" style="" class="header align-items-stretch">
@@ -172,7 +184,7 @@
 									<div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
 										<div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-900 menu-state-title-success menu-state-icon-success menu-state-bullet-success menu-arrow-gray-700 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
 											<div class="menu-item me-lg-1">
-												<a class="menu-link  active py-3" href="">
+												<a class="menu-link  active py-3" href="{{ url('/dashboard') }}">
 													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
 														<path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
 													  </svg>
@@ -234,7 +246,7 @@
 						</div>
 					</div>
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-						<div class="toolbar" id="kt_toolbar">
+						{{-- <div class="toolbar" id="kt_toolbar">
 							<div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
 								<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 									<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Dashboard
@@ -298,7 +310,7 @@
 									<a href="#" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_success_button">Create</a>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 						<div class="post d-flex flex-column-fluid" id="kt_post">
 							<div id="kt_content_container" class="container-xxl">
 
@@ -308,7 +320,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+					{{-- <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
 						<div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
 							<div class="text-dark order-2 order-md-1">
 								<span class="text-muted fw-bold me-1">2021©</span>
@@ -326,7 +338,7 @@
 								</li>
 							</ul>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 		</div>

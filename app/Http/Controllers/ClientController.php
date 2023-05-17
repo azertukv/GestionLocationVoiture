@@ -33,6 +33,7 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $clients=new Client();
+        view('client.ajout')->with('clients', $clients);
         $clients->nom=$request->input('nom');
         $clients->prenom=$request->input('prenom');
         $clients->dateNaissance=$request->input('dateNaissance');

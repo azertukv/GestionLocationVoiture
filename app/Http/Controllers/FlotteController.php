@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Flotte;
+use App\Models\User;
 
 class FlotteController extends Controller
 {
@@ -12,9 +13,11 @@ class FlotteController extends Controller
      */
     public function index()
     {
-        error_log("controller");
-        $flottes=Flotte::all();
-        return response()->json($flottes);
+        // error_log("controller");
+         $flottes=Flotte::all();
+         $users=User::all();
+        // return response()->json($flottes);
+        return view('flotte.index',['flottes'=> $flottes,'users'=>$users]);
     }
 
     /**
@@ -43,6 +46,7 @@ class FlotteController extends Controller
         $flottes->dateFinAssurance=$request->input('dateFinAssurance');
         $flottes->prixLocation=$request->input('prixLocation');
         $flottes->save();
+        return redirect()->back()->with('success', 'Data added successfully');
     }
 
     /**
@@ -80,6 +84,7 @@ class FlotteController extends Controller
         $flottes->dateFinAssurance=$request->input('dateFinAssurance');
         $flottes->prixLocation=$request->input('prixLocation');
         $flottes->save();
+        return redirect()->back()->with('success', 'Data updated successfully');
     }
 
     /**
@@ -90,8 +95,8 @@ class FlotteController extends Controller
         $flottes=Flotte::find($id);
         if($flottes){
             $flottes->delete();
-            return response()->json(['message'=>'Flotte supprimée avec succès']);
+            return redirect()->back()->with('success', 'Data deleted successfully');
         }
-        return response()->json(['message'=>'Impossible de trouver flotte'],404);
+        return redirect()->back()->with('warning', 'Impossible de trouver le flotte');
     }
 }

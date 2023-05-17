@@ -5,21 +5,19 @@
 <div class="container">
     <div id="dash"></div>
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-24">
             <div class="card">
 
-                <div class="card-header"><h1>Client</h1></div>
+                <div class="card-header"><h1>Flotte</h1></div>
 
                 <div class="card-body">
                     <!-- Button trigger modal -->
-                    
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"  >
-                        Ajouter Client
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                        Ajouter Flotte
                     </button>
 
                     <!-- Modal -->
-                    @include('client.ajout')
-
+                    @include('flotte.ajout')
                     <br>
                     <br>
                     <br>
@@ -28,36 +26,45 @@
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prénom</th>
-                                <th scope="col">Date de naissance</th>
-                                <th scope="col">CIN</th>
-                                <th scope="col">Téléphone</th>
-                                <th scope="col">Numéro de Pérmis</th>
-                                <th scope="col">Date Edition Permis</th>
+                                <th scope="col">Immatriculation</th>
+                                <th scope="col">Marque</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Modèle</th>
+                                <th scope="col">Kilométrage</th>
+                                <th scope="col">Nombre de porte</th>
+                                <th scope="col">Couleur</th>
+                                <th scope="col">Dispnibilite</th>
+                                <th scope="col">Expedition de la carte grise</th>
+                                <th scope="col">Date fin d'assurance</th>
+                                <th scope="col">Prix de location</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $clients as $client)
+                                @foreach ( $flottes as $flotte)
 
                                 <tr>
-                                  <th scope="row">{{ $client->id }}</th>
-                                  <td>{{ $client->nom }}</td>
-                                  <td>{{ $client->prenom }}</td>
-                                  <td>{{ $client->dateNaissance }}</td>
-                                  <td>{{ $client->cin }}</td>
-                                  <td>{{ $client->telephone }}</td>
-                                  <td>{{ $client->numPermis }}</td>
-                                  <td>{{ $client->dateEditionPermis }}</td>
+                                  <th scope="row">{{ $flotte->id }}</th>
+                                  <td>{{ $flotte->immatriculation }}</td>
+                                  <td>{{ $flotte->marque }}</td>
+                                  <td>{{ $flotte->type }}</td>
+                                  <td>{{ $flotte->modele }}</td>
+                                  <td>{{ $flotte->kilometrage }}</td>
+                                  <td>{{ $flotte->nbrPorte }}</td>
+                                  <td>{{ $flotte->couleur }}</td>
+                                  <td>{{ $flotte->dispnibilite }}</td>
+                                  <td>{{ $flotte->expeditionCarteGrise }}</td>
+                                  <td>{{ $flotte->dateFinAssurance }}</td>
+                                  <td>{{ $flotte->prixLocation }}</td>
+
 
 
                                   <td>
-                                    <form class="" action="{{ route('delete_client' , $client->id) }}" method="POST">
+                                    <form class="" action="{{ route('delete_flotte' , $flotte->id) }}" method="POST">
 
                                         {!! csrf_field() !!}
                                         {{-- <input type="hidden" class="form-control" value="{{ $partenaire->id }}" id="nompartenaire" name="partenaireId"> --}}
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $client->id }}">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $flotte->id }}">
                                             modifier
                                         </button>
                                         <input name="_method" type="hidden" value="DELETE">
@@ -70,7 +77,7 @@
                                 </tr>
 
                                 <!-- Modal -->
-                                @include('client.modifier')
+                                @include('flotte.modifier')
 
                                 @endforeach
 
@@ -91,5 +98,5 @@
     </div>
 
 </div>
-@include('client.supprimer')
+@include('flotte.supprimer')
 @endsection

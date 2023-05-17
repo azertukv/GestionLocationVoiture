@@ -12,9 +12,10 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        error_log("controller");
+        // error_log("controller");
         $reservations=Reservation::all();
-        return response()->json($reservations);
+        // return response()->json($reservations);
+        return view('reservation.index')->with('reservations', $reservations);
     }
 
     /**
@@ -35,6 +36,7 @@ class ReservationController extends Controller
         $reservations->dateFinReservation=$request->input('dateFinReservation');
         $reservations->nombreJours=$request->input('nombreJours');
         $reservations->save();
+        return redirect()->back()->with('success', 'Data added successfully');
     }
 
     /**
@@ -64,6 +66,7 @@ class ReservationController extends Controller
         $reservations->dateFinReservation=$request->input('dateFinReservation');
         $reservations->nombreJours=$request->input('nombreJours');
         $reservations->save();
+        return redirect()->back()->with('success', 'Data updated successfully');
     }
 
     /**
@@ -74,8 +77,8 @@ class ReservationController extends Controller
         $reservations=Reservation::find($id);
         if($reservations){
             $reservations->delete();
-            return response()->json(['message'=>'Reservation supprimé avec succès']);
+            return redirect()->back()->with('success', 'Data deleted successfully');
         }
-        return response()->json(['message'=>'Impossible de trouver reservation'],404);
+        return redirect()->back()->with('warning', 'Impossible de trouver le client');
     }
 }

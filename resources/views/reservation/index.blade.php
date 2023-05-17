@@ -8,17 +8,17 @@
         <div class="col-md-12">
             <div class="card">
 
-                <div class="card-header"><h1>Client</h1></div>
+                <div class="card-header"><h1>Resservations</h1></div>
 
                 <div class="card-body">
                     <!-- Button trigger modal -->
-                    
+
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"  >
-                        Ajouter Client
+                        Ajouter Reservation
                     </button>
 
                     <!-- Modal -->
-                    @include('client.ajout')
+                    @include('reservation.ajout')
 
                     <br>
                     <br>
@@ -28,36 +28,30 @@
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prénom</th>
+                                <th scope="col">Date Début Réservation</th>
+                                <th scope="col">Date fin Réservation</th>
                                 <th scope="col">Date de naissance</th>
-                                <th scope="col">CIN</th>
-                                <th scope="col">Téléphone</th>
-                                <th scope="col">Numéro de Pérmis</th>
-                                <th scope="col">Date Edition Permis</th>
+
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $clients as $client)
+                                @foreach ( $reservations as $reservation)
 
                                 <tr>
-                                  <th scope="row">{{ $client->id }}</th>
-                                  <td>{{ $client->nom }}</td>
-                                  <td>{{ $client->prenom }}</td>
-                                  <td>{{ $client->dateNaissance }}</td>
-                                  <td>{{ $client->cin }}</td>
-                                  <td>{{ $client->telephone }}</td>
-                                  <td>{{ $client->numPermis }}</td>
-                                  <td>{{ $client->dateEditionPermis }}</td>
+                                  <th scope="row">{{ $reservation->id }}</th>
+                                  <td>{{ $reservation->dateDebutReservation }}</td>
+                                  <td>{{ $reservation->dateFinReservation }}</td>
+                                  <td>{{ $reservation->nombreJours }}</td>
+
 
 
                                   <td>
-                                    <form class="" action="{{ route('delete_client' , $client->id) }}" method="POST">
+                                    <form class="" action="{{ route('delete_reservations' , $reservation->id) }}" method="POST">
 
                                         {!! csrf_field() !!}
                                         {{-- <input type="hidden" class="form-control" value="{{ $partenaire->id }}" id="nompartenaire" name="partenaireId"> --}}
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $client->id }}">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $reservation->id }}">
                                             modifier
                                         </button>
                                         <input name="_method" type="hidden" value="DELETE">
@@ -70,7 +64,7 @@
                                 </tr>
 
                                 <!-- Modal -->
-                                @include('client.modifier')
+                                @include('reservation.modifier')
 
                                 @endforeach
 
@@ -91,5 +85,5 @@
     </div>
 
 </div>
-@include('client.supprimer')
+@include('reservation.supprimer')
 @endsection
